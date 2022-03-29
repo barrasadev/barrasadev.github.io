@@ -1,0 +1,23 @@
+//Rewrite to www
+Options +FollowSymLinks
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^nexbi.pro[nc]
+RewriteRule ^(.*)$ http://www.nexbi.pro/$1 [r=301,nc]
+
+//Caching schema
+<FilesMatch "\.(jpg|png|css|js)$">
+Header set Cache-Control "public, max-age=2177280000"
+</FilesMatch>
+
+//Change default directory page
+DirectoryIndex index.html
+
+//Prevent viewing of .htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+//Prevent directory listings
+Options All -Indexes
+ 
